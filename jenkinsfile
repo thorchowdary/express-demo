@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('Deploy pacakage to S3') {
+            steps {
+                sh 'express-demo.sh'
+            }
+        }
+        stage('Download package from s3') {
+            steps {
+                sh 'aws s3 cp s3://bucketUrl *'
+                sh 'unzip express-demo${}.zip' 
+                sh 'node server.js &'
+            }
+        }
+           post {
+        success {
+            echo "success!"
+            
+        }
+        failure {
+            echo "failure"
+        }
+    }
+        
+    }
+}
