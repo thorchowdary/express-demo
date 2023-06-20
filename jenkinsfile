@@ -4,24 +4,16 @@ pipeline {
         stage('Deploy pacakage to S3') {
             steps {
                 sh 'express-demo.sh'
+                sh 'zip -r express-demo.zip *'
+                sh 'aws s3 cp express-demo s3://dev-backendd '
             }
         }
         stage('Download package from s3') {
             steps {
-                sh 'aws s3 cp s3://bucketUrl *'
-                sh 'unzip express-demo${}.zip' 
+                sh 'aws s3 cp s3://dev-backendd *'
+                sh 'unzip express-demo.zip' 
                 sh 'node server.js &'
             }
         }
-           post {
-        success {
-            echo "success!"
-            
-        }
-        failure {
-            echo "failure"
-        }
-    }
-        
     }
 }
