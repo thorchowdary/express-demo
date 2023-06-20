@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Deploy pacakage to S3') {
             steps {
-                sh 'sudo ls -ltrh'
+                sh 'ls -ltrh'
                 sh 'express-demo.sh'
                 sh 'zip -r express-demo.zip *'
                 sh 'aws s3 cp express-demo s3://dev-backendd '
