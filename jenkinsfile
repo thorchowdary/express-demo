@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Deploy pacakage to S3') {
             steps {
+                sh 'yum install zip'
                 sh 'ls -ltrh'
                 sh 'zip -r my_package.zip *'
                 sh 'aws s3 cp my_package s3://dev-backendd '
