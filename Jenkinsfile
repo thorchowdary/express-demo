@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Deploy pacakage to S3') {
             steps {
+                sh 'node --version'
                 sh 'bash ./express-demo.sh'
             }
         }
