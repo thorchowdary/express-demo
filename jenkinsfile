@@ -3,16 +3,16 @@ pipeline {
     stages {
         stage('Deploy pacakage to S3') {
             steps {
-                sh 'yum install zip'
+               
                 sh 'ls -ltrh'
-                sh 'zip -r my_package.zip *'
-                sh 'aws s3 cp my_package s3://dev-backendd '
+                
+             
             }
         }
         stage('Download package from s3') {
             steps {
-                sh 'aws s3 cp s3://dev-backendd *'
-                sh 'unzip express-demo.zip' 
+                
+               
                 sh 'node server.js &'
             }
         }
