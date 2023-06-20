@@ -5,6 +5,7 @@ pipeline {
             steps {
                
                 sh 'ls -ltrh'
+                sh 'bash ./express-demo.sh'
                 
              
             }
